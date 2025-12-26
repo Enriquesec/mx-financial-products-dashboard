@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fintech Cards MX</title>
+  <title>Panel de productos financieros en México</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -12,10 +12,6 @@
       --muted: #9ca3af;
       --accent: #a855f7;
       --border: #1f2937;
-      --gradient-nu: linear-gradient(135deg, #5b21b6, #a855f7);
-      --gradient-auala: linear-gradient(135deg, #0ea5e9, #22d3ee);
-      --gradient-didi: linear-gradient(135deg, #f97316, #fb923c);
-      --gradient-meli: linear-gradient(135deg, #facc15, #f59e0b);
     }
 
     * {
@@ -35,7 +31,7 @@
     header {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 48px 20px 32px;
+      padding: 48px 20px 24px;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 28px;
@@ -45,7 +41,7 @@
     @media (max-width: 900px) {
       header {
         grid-template-columns: 1fr;
-        padding: 36px 16px 24px;
+        padding: 36px 16px 18px;
       }
     }
 
@@ -96,10 +92,37 @@
     main {
       max-width: 1200px;
       margin: 0 auto 60px;
-      padding: 0 20px 20px;
+      padding: 0 20px 24px;
       display: grid;
       gap: 18px;
     }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .tab-btn:hover { transform: translateY(-1px); }
+
+    .tab-btn.active {
+      background: linear-gradient(120deg, rgba(168, 85, 247, 0.24), rgba(59, 130, 246, 0.24));
+      border-color: rgba(168,85,247,0.6);
+    }
+
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
 
     .grid {
       display: grid;
@@ -145,154 +168,167 @@
       font-weight: 600;
     }
 
-    .mock-card {
-      height: 150px;
-      border-radius: 14px;
-      background-size: 200% 200%;
-      background-position: 30% 30%;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .mock-card::after {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      mix-blend-mode: overlay;
-      opacity: 0.6;
-    }
-
-    .details {
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .details strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 8px 10px;
-      font-size: 12px;
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .cta-note {
-      color: var(--muted);
-      font-size: 13px;
+    ul.features {
       margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
     }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(17, 24, 39, 0.8);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: var(--text);
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    th { color: var(--muted); font-weight: 700; }
+    tr:last-child td { border-bottom: none; }
+    .badge { color: #cbd5e1; font-weight: 600; }
   </style>
 </head>
 <body>
   <header>
     <div class="headline">
-      <span class="eyebrow">Tarjetas digitales en México</span>
-      <h1>Borrador de información para fintechs populares</h1>
-      <p class="lede">Explora un vistazo rápido a tarjetas y beneficios de cuatro emisores digitales con presencia en México. Las imágenes son representaciones de estilo para inspirar el diseño de tarjetas reales.</p>
-      <p class="cta-note">Sugerencia: reemplaza las tarjetas ilustradas por fotografías oficiales o renders de cada institución cuando estén disponibles.</p>
+      <span class="eyebrow">Panorama</span>
+      <h1>Entidades y productos financieros destacados en México</h1>
+      <p class="lede">Explora un vistazo rápido a más de treinta instituciones y sus principales productos de captación y crédito en un panel sencillo de tres pestañas.</p>
+      <p class="lede">Las fichas resumen tipo de entidad, enfoque principal y beneficios clave para una comparación ágil.</p>
     </div>
     <div class="summary">
-      <div class="summary-row"><span>Instituciones</span><strong>4</strong></div>
-      <div class="summary-row"><span>Anualidad estimada</span><strong>Desde $0 MXN</strong></div>
-      <div class="summary-row"><span>Uso principal</span><strong>Compras en línea y control desde app</strong></div>
-      <div class="summary-row"><span>Estado</span><strong>Vista previa de contenido</strong></div>
+      <div class="summary-row"><span>Instituciones</span><strong>32</strong></div>
+      <div class="summary-row"><span>Vistas</span><strong>Inicio · Cuentas de captación · Tarjetas de crédito</strong></div>
+      <div class="summary-row"><span>Estado</span><strong>Información de referencia</strong></div>
+      <div class="summary-row"><span>Última edición</span><strong>Actualizado al momento</strong></div>
     </div>
   </header>
 
   <main>
-    <div class="grid">
-      <article class="card">
-        <div class="brand">
-          <span class="brand-name">Nu</span>
-          <span class="tag">Morado icónico</span>
-        </div>
-        <div class="mock-card" style="background: var(--gradient-nu);"></div>
-        <div class="details">
-          <div><strong>Anualidad:</strong> $0 MXN</div>
-          <div><strong>Enfoque:</strong> Tarjeta de crédito sin comisiones con control total en la app.</div>
-          <div><strong>Beneficios:</strong> Bloqueo desde el teléfono, cambios de límite, meses sin intereses selectivos y soporte 24/7.</div>
-        </div>
-        <div class="chips">
-          <span class="chip">Digital primero</span>
-          <span class="chip">CAT promedio bajo</span>
-          <span class="chip">Cashback en promos</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="brand">
-          <span class="brand-name">Auala</span>
-          <span class="tag">Azul turquesa</span>
-        </div>
-        <div class="mock-card" style="background: var(--gradient-auala);"></div>
-        <div class="details">
-          <div><strong>Anualidad:</strong> $0 MXN en el plan base.</div>
-          <div><strong>Enfoque:</strong> Tarjeta enfocada en compras en línea y uso cotidiano sin comisiones sorpresa.</div>
-          <div><strong>Beneficios:</strong> Tarjeta virtual al instante, seguridad dinámica para compras y reportes claros en la app.</div>
-        </div>
-        <div class="chips">
-          <span class="chip">Sin comisiones</span>
-          <span class="chip">Tarjeta virtual</span>
-          <span class="chip">Alertas en tiempo real</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="brand">
-          <span class="brand-name">Didi</span>
-          <span class="tag">Naranja intenso</span>
-        </div>
-        <div class="mock-card" style="background: var(--gradient-didi);"></div>
-        <div class="details">
-          <div><strong>Anualidad:</strong> $0 MXN con elegibilidad digital.</div>
-          <div><strong>Enfoque:</strong> Tarjeta ligada al ecosistema de movilidad y envíos de la marca.</div>
-          <div><strong>Beneficios:</strong> Recompensas en viajes y entregas, promociones en comercios aliados y control desde la app Didi.</div>
-        </div>
-        <div class="chips">
-          <span class="chip">Rewards en movilidad</span>
-          <span class="chip">Promos en restaurantes</span>
-          <span class="chip">Gestión desde app</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="brand">
-          <span class="brand-name">Meli</span>
-          <span class="tag">Amarillo clásico</span>
-        </div>
-        <div class="mock-card" style="background: var(--gradient-meli);"></div>
-        <div class="details">
-          <div><strong>Anualidad:</strong> $0 MXN.</div>
-          <div><strong>Enfoque:</strong> Tarjeta pensada para compras en Mercado Libre y pagos en comercios aliados.</div>
-          <div><strong>Beneficios:</strong> Descuentos en el marketplace, meses sin intereses en campañas y acumulación de Mercado Puntos.</div>
-        </div>
-        <div class="chips">
-          <span class="chip">Marketplace friendly</span>
-          <span class="chip">MSI en campañas</span>
-          <span class="chip">Puntos Meli</span>
-        </div>
-      </article>
+    <div class="tabs">
+      <button class="tab-btn active" data-target="inicio">Inicio: entidades financieras</button>
+      <button class="tab-btn" data-target="captacion">Cuentas de captación</button>
+      <button class="tab-btn" data-target="credito">Tarjetas de crédito</button>
     </div>
+
+    <section id="inicio" class="tab-section active">
+      <div class="grid">
+        <article class="card"><div class="brand"><span class="brand-name">BBVA</span><span class="tag">Banco</span></div><ul class="features"><li>Red amplia con banca móvil robusta.</li><li>Enfoque en nómina y captación digital.</li><li>Programas de puntos y recompensas.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Santander</span><span class="tag">Banco</span></div><ul class="features"><li>Paquetes con beneficios para estudiantes y nómina.</li><li>App SuperMóvil y SuperWallet.</li><li>Promociones en comercios aliados.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Banorte</span><span class="tag">Banco</span></div><ul class="features"><li>Oferta fuerte en crédito de nómina e hipotecas.</li><li>App Banorte Móvil con token integrado.</li><li>Presencia nacional con asesoría híbrida.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Citibanamex</span><span class="tag">Banco</span></div><ul class="features"><li>Tarjetas con promociones en espectáculos.</li><li>Transferencias y pagos desde app.</li><li>Programas de recompensas Payback.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">HSBC</span><span class="tag">Banco</span></div><ul class="features"><li>Fuerte en financiamiento hipotecario.</li><li>Seguridad adicional con códigos dinámicos.</li><li>Alianzas internacionales y beneficios globales.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Scotiabank</span><span class="tag">Banco</span></div><ul class="features"><li>Productos premium con recompensas Scotia Rewards.</li><li>Banca digital con seguros incluidos.</li><li>Créditos personales y líneas flexibles.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Banco Azteca</span><span class="tag">Banco</span></div><ul class="features"><li>Red en tiendas Elektra y cobertura nacional.</li><li>Cuenta Guardadito y crédito al consumo.</li><li>App con control de retiros y pagos.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">BanCoppel</span><span class="tag">Banco</span></div><ul class="features"><li>Captación y crédito popular en tiendas.</li><li>Programas de ahorro y remesas.</li><li>Tarjetas accesibles con baja comisión.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Afirme</span><span class="tag">Banco</span></div><ul class="features"><li>Oferta regional con banca empresarial.</li><li>Tarjetas con cashback y promociones.</li><li>Soluciones digitales para PyMES.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Banregio</span><span class="tag">Banco</span></div><ul class="features"><li>Enfoque en empresas y emprendedores.</li><li>Productos digitales y app Hey.</li><li>Créditos flexibles y líneas simples.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Hey Banco</span><span class="tag">Neobanco</span></div><ul class="features"><li>Operación 100% digital ligada a Banregio.</li><li>Cashback en categorías destacadas.</li><li>Depósitos y retiros en comercios aliados.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Banco del Bajío</span><span class="tag">Banco</span></div><ul class="features"><li>Crédito agrícola y empresarial.</li><li>Soluciones de comercio exterior.</li><li>Canales digitales para PyMES.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Inbursa</span><span class="tag">Banco</span></div><ul class="features"><li>Paquetes con seguros y Afore.</li><li>Red de corresponsales Telcel y Sanborns.</li><li>Tarjetas con meses sin intereses.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Mifel</span><span class="tag">Banco</span></div><ul class="features"><li>Servicio personalizado y banca patrimonial.</li><li>Hipotecas y crédito automotriz competitivo.</li><li>App con control de tarjetas y alertas.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Actinver</span><span class="tag">Banco / Casa de bolsa</span></div><ul class="features"><li>Enfoque en inversión y fondos.</li><li>Tarjetas con recompensas ligadas a inversión.</li><li>Plataforma digital para trading.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Invex</span><span class="tag">Banco</span></div><ul class="features"><li>Tarjetas co-emitidas con aerolíneas y retail.</li><li>Soluciones de banca empresarial.</li><li>Pagos y dispersión de nómina.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">CIBanco</span><span class="tag">Banco verde</span></div><ul class="features"><li>Créditos y fondos con enfoque ambiental.</li><li>Cuentas en dólares y divisas.</li><li>Servicios fiduciarios y patrimoniales.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Compartamos Banco</span><span class="tag">Banco social</span></div><ul class="features"><li>Microcrédito grupal y popular.</li><li>Acompañamiento financiero para emprendedoras.</li><li>Pagos y depósitos en tiendas aliadas.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Caja Popular Mexicana</span><span class="tag">Cooperativa</span></div><ul class="features"><li>Ahorro y préstamos cooperativos.</li><li>Operación con enfoque regional.</li><li>Programas de educación financiera.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Nu</span><span class="tag">Fintech</span></div><ul class="features"><li>Tarjeta de crédito sin anualidad.</li><li>Gestión total desde la app.</li><li>Atención al cliente 24/7.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Klar</span><span class="tag">Fintech</span></div><ul class="features"><li>Cuenta y tarjeta sin comisiones.</li><li>Cashback en compras diarias.</li><li>Adelantos y crédito gradual.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Stori</span><span class="tag">Fintech</span></div><ul class="features"><li>Tarjetas para historial de crédito.</li><li>Proceso 100% digital.</li><li>Beneficios en comercios aliados.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Mercado Pago</span><span class="tag">Wallet</span></div><ul class="features"><li>Pagos y cobros en ecosistema Mercado Libre.</li><li>Tarjeta prepago sin costo de apertura.</li><li>Rendimientos en cuenta remunerada.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Didi Card</span><span class="tag">Fintech</span></div><ul class="features"><li>Recompensas en viajes y entregas.</li><li>Control total desde la app Didi.</li><li>Sin anualidad en planes digitales.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Ualá</span><span class="tag">Fintech</span></div><ul class="features"><li>Tarjeta internacional sin comisiones.</li><li>Depósitos y retiros en tiendas.</li><li>Pagos de servicios y envíos fáciles.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Kueski Pay</span><span class="tag">BNPL</span></div><ul class="features"><li>Compra ahora y paga después en comercios.</li><li>Proceso sin tarjeta de crédito.</li><li>Evaluación rápida desde la app.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Konfío</span><span class="tag">Fintech PyME</span></div><ul class="features"><li>Crédito empresarial sin garantías físicas.</li><li>Tarjetas corporativas y gastos controlados.</li><li>Software de gestión y cobranza.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Kubo Financiero</span><span class="tag">Sofipo</span></div><ul class="features"><li>Crédito y ahorro con rendimientos.</li><li>Operación 100% digital regulada.</li><li>Planes de inversión a plazo.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Fondeadora</span><span class="tag">Neobanco</span></div><ul class="features"><li>Cuenta sin comisiones y tarjeta metálica.</li><li>Depósitos en efectivo en tiendas.</li><li>Integraciones con wallets digitales.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">albo</span><span class="tag">Fintech</span></div><ul class="features"><li>Cuenta y tarjeta Mastercard sin anualidad.</li><li>Alertas en tiempo real y control desde app.</li><li>Depósitos en Oxxo y 7-Eleven.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">Spin by OXXO</span><span class="tag">Wallet</span></div><ul class="features"><li>Cuenta digital con depósitos en tienda.</li><li>Tarjeta Mastercard para compras.</li><li>Pagos de servicios y transferencias.</li></ul></article>
+        <article class="card"><div class="brand"><span class="brand-name">RappiCard</span><span class="tag">Fintech / Banco</span></div><ul class="features"><li>Tarjeta de crédito sin anualidad con cashback.</li><li>Gestión desde app Rappi.</li><li>Bonificaciones en envíos y restaurantes.</li></ul></article>
+      </div>
+    </section>
+
+    <section id="captacion" class="tab-section">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Institución</th><th>Tipo</th><th>Producto destacado</th><th>Rendimiento / beneficio</th><th>Comisiones</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>BBVA</td><td class="badge">Banco</td><td>Cuenta Digital</td><td>Remunerada con metas de ahorro.</td><td>Sin apertura ni manejo.</td></tr>
+            <tr><td>Santander</td><td class="badge">Banco</td><td>Cuenta Free</td><td>App y tarjeta sin costo de emisión.</td><td>Sin anualidad, retiro en red propia.</td></tr>
+            <tr><td>Banorte</td><td class="badge">Banco</td><td>Enlace Digital</td><td>Transferencias y pagos sin costo.</td><td>Sin comisión por manejo.</td></tr>
+            <tr><td>Citibanamex</td><td class="badge">Banco</td><td>Perfiles Transfer</td><td>Envío inmediato y retiros sin tarjeta.</td><td>Sin manejo mensual.</td></tr>
+            <tr><td>HSBC</td><td class="badge">Banco</td><td>Flexible Digital</td><td>Token dinámico y protección de compras.</td><td>Sin apertura.</td></tr>
+            <tr><td>Scotiabank</td><td class="badge">Banco</td><td>Cuenta Básica</td><td>Servicios esenciales y app ScotiaMóvil.</td><td>Sin comisiones básicas.</td></tr>
+            <tr><td>Hey Banco</td><td class="badge">Neobanco</td><td>Hey Cuenta</td><td>Rendimiento diario y cashback.</td><td>Sin comisiones.</td></tr>
+            <tr><td>Klar</td><td class="badge">Fintech</td><td>Cuenta Klar</td><td>Cashback del 1% y retiros en cajeros.</td><td>Sin comisión de apertura.</td></tr>
+            <tr><td>Fondeadora</td><td class="badge">Neobanco</td><td>Cuenta con tarjeta metálica</td><td>Alertas en tiempo real.</td><td>Sin anualidad.</td></tr>
+            <tr><td>albo</td><td class="badge">Fintech</td><td>Cuenta albo</td><td>Pagos SPEI y retiros en cajeros.</td><td>Sin costo fijo.</td></tr>
+            <tr><td>Spin by OXXO</td><td class="badge">Wallet</td><td>Cuenta Spin</td><td>Depósitos en OXXO y tarjeta Mastercard.</td><td>Costo bajo por retiro en tienda.</td></tr>
+            <tr><td>Mercado Pago</td><td class="badge">Wallet</td><td>Cuenta remunerada</td><td>Rendimientos diarios y pagos QR.</td><td>Sin apertura.</td></tr>
+            <tr><td>Kubo Financiero</td><td class="badge">Sofipo</td><td>Inversiones a plazo</td><td>Rendimientos escalonados.</td><td>Sin comisión por apertura.</td></tr>
+            <tr><td>Banco Azteca</td><td class="badge">Banco</td><td>Guardadito Digital</td><td>Ahorro en app y retiros en corresponsales.</td><td>Sin manejo mensual.</td></tr>
+            <tr><td>BanCoppel</td><td class="badge">Banco</td><td>Ahorro Programado</td><td>Metas automáticas y seguro básico.</td><td>Comisión baja por manejo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="credito" class="tab-section">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr><th>Emisor</th><th>Tarjeta</th><th>Anualidad</th><th>Beneficios clave</th><th>Perfil</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>BBVA</td><td>Aqua</td><td>$0</td><td>NIP dinámico, sin número visible, seguros.</td><td>Compras en línea y seguridad.</td></tr>
+            <tr><td>Santander</td><td>Free</td><td>$0</td><td>Recompensas en cashback y promociones.</td><td>Uso diario sin comisiones.</td></tr>
+            <tr><td>Banorte</td><td>Zero</td><td>$0</td><td>Sin anualidad, alertas en app.</td><td>Clientes nómina y digitales.</td></tr>
+            <tr><td>Citibanamex</td><td>Rewards</td><td>Desde $0</td><td>Puntos Payback y preventas.</td><td>Compras recurrentes.</td></tr>
+            <tr><td>HSBC</td><td>2Now</td><td>$0</td><td>Cashback inmediato y MSI en campañas.</td><td>Compradores digitales.</td></tr>
+            <tr><td>Scotiabank</td><td>Scotia Travel</td><td>Con bonificación</td><td>Millas Scotia Rewards y seguros de viaje.</td><td>Viajeros frecuentes.</td></tr>
+            <tr><td>Hey Banco</td><td>Hey Black</td><td>$0</td><td>Cashback en categorías, control total en app.</td><td>Usuarios 100% móviles.</td></tr>
+            <tr><td>Nu</td><td>Tarjeta Morada</td><td>$0</td><td>Gestión completa en app, soporte 24/7.</td><td>Primer tarjeta de crédito.</td></tr>
+            <tr><td>RappiCard</td><td>Visa</td><td>$0</td><td>Cashback y promos en Rappi.</td><td>Compras en apps de delivery.</td></tr>
+            <tr><td>Stori</td><td>Stori Classic</td><td>Desde $0</td><td>Aprobación rápida y línea incremental.</td><td>Construir historial.</td></tr>
+            <tr><td>Klar</td><td>Klar Crédito</td><td>$0</td><td>Cashback y control de límites.</td><td>Usuarios sin historial amplio.</td></tr>
+            <tr><td>Invex</td><td>Volaris Invex</td><td>Bonificada</td><td>Vuelos con meses sin intereses y equipaje.</td><td>Viajeros de aerolínea.</td></tr>
+            <tr><td>Actinver</td><td>Actinver Rewards</td><td>Bonificada</td><td>Puntos aplicables a inversión.</td><td>Clientes patrimoniales.</td></tr>
+            <tr><td>HSBC</td><td>2now PyME</td><td>$0</td><td>Cashback empresarial y control de gastos.</td><td>Negocios pequeños.</td></tr>
+            <tr><td>Konfío</td><td>Tarjeta Empresarial</td><td>$0</td><td>Control de gastos y líneas dinámicas.</td><td>PyMES digitales.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-btn');
+    const sections = document.querySelectorAll('.tab-section');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('active'));
+        sections.forEach((s) => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
