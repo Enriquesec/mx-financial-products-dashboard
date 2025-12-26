@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fintech Cards MX</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #a855f7;
+      --border: #1f2937;
+      --gradient-nu: linear-gradient(135deg, #5b21b6, #a855f7);
+      --gradient-auala: linear-gradient(135deg, #0ea5e9, #22d3ee);
+      --gradient-didi: linear-gradient(135deg, #f97316, #fb923c);
+      --gradient-meli: linear-gradient(135deg, #facc15, #f59e0b);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.08), transparent 35%),
+                  radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.08), transparent 35%),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 20px 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        grid-template-columns: 1fr;
+        padding: 36px 16px 24px;
+      }
+    }
+
+    .headline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 46px);
+      letter-spacing: -0.02em;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .summary {
+      background: rgba(31, 41, 55, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: grid;
+      gap: 10px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 20px 20px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(168, 85, 247, 0.4);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .tag {
+      background: rgba(168, 85, 247, 0.12);
+      color: #d8b4fe;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .mock-card {
+      height: 150px;
+      border-radius: 14px;
+      background-size: 200% 200%;
+      background-position: 30% 30%;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mock-card::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      mix-blend-mode: overlay;
+      opacity: 0.6;
+    }
+
+    .details {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .details strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="headline">
+      <span class="eyebrow">Tarjetas digitales en México</span>
+      <h1>Borrador de información para fintechs populares</h1>
+      <p class="lede">Explora un vistazo rápido a tarjetas y beneficios de cuatro emisores digitales con presencia en México. Las imágenes son representaciones de estilo para inspirar el diseño de tarjetas reales.</p>
+      <p class="cta-note">Sugerencia: reemplaza las tarjetas ilustradas por fotografías oficiales o renders de cada institución cuando estén disponibles.</p>
+    </div>
+    <div class="summary">
+      <div class="summary-row"><span>Instituciones</span><strong>4</strong></div>
+      <div class="summary-row"><span>Anualidad estimada</span><strong>Desde $0 MXN</strong></div>
+      <div class="summary-row"><span>Uso principal</span><strong>Compras en línea y control desde app</strong></div>
+      <div class="summary-row"><span>Estado</span><strong>Vista previa de contenido</strong></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid">
+      <article class="card">
+        <div class="brand">
+          <span class="brand-name">Nu</span>
+          <span class="tag">Morado icónico</span>
+        </div>
+        <div class="mock-card" style="background: var(--gradient-nu);"></div>
+        <div class="details">
+          <div><strong>Anualidad:</strong> $0 MXN</div>
+          <div><strong>Enfoque:</strong> Tarjeta de crédito sin comisiones con control total en la app.</div>
+          <div><strong>Beneficios:</strong> Bloqueo desde el teléfono, cambios de límite, meses sin intereses selectivos y soporte 24/7.</div>
+        </div>
+        <div class="chips">
+          <span class="chip">Digital primero</span>
+          <span class="chip">CAT promedio bajo</span>
+          <span class="chip">Cashback en promos</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="brand">
+          <span class="brand-name">Auala</span>
+          <span class="tag">Azul turquesa</span>
+        </div>
+        <div class="mock-card" style="background: var(--gradient-auala);"></div>
+        <div class="details">
+          <div><strong>Anualidad:</strong> $0 MXN en el plan base.</div>
+          <div><strong>Enfoque:</strong> Tarjeta enfocada en compras en línea y uso cotidiano sin comisiones sorpresa.</div>
+          <div><strong>Beneficios:</strong> Tarjeta virtual al instante, seguridad dinámica para compras y reportes claros en la app.</div>
+        </div>
+        <div class="chips">
+          <span class="chip">Sin comisiones</span>
+          <span class="chip">Tarjeta virtual</span>
+          <span class="chip">Alertas en tiempo real</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="brand">
+          <span class="brand-name">Didi</span>
+          <span class="tag">Naranja intenso</span>
+        </div>
+        <div class="mock-card" style="background: var(--gradient-didi);"></div>
+        <div class="details">
+          <div><strong>Anualidad:</strong> $0 MXN con elegibilidad digital.</div>
+          <div><strong>Enfoque:</strong> Tarjeta ligada al ecosistema de movilidad y envíos de la marca.</div>
+          <div><strong>Beneficios:</strong> Recompensas en viajes y entregas, promociones en comercios aliados y control desde la app Didi.</div>
+        </div>
+        <div class="chips">
+          <span class="chip">Rewards en movilidad</span>
+          <span class="chip">Promos en restaurantes</span>
+          <span class="chip">Gestión desde app</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="brand">
+          <span class="brand-name">Meli</span>
+          <span class="tag">Amarillo clásico</span>
+        </div>
+        <div class="mock-card" style="background: var(--gradient-meli);"></div>
+        <div class="details">
+          <div><strong>Anualidad:</strong> $0 MXN.</div>
+          <div><strong>Enfoque:</strong> Tarjeta pensada para compras en Mercado Libre y pagos en comercios aliados.</div>
+          <div><strong>Beneficios:</strong> Descuentos en el marketplace, meses sin intereses en campañas y acumulación de Mercado Puntos.</div>
+        </div>
+        <div class="chips">
+          <span class="chip">Marketplace friendly</span>
+          <span class="chip">MSI en campañas</span>
+          <span class="chip">Puntos Meli</span>
+        </div>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
