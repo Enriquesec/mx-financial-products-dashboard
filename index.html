@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de productos financieros en México</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     :root {
       --bg: #0f172a;
@@ -200,6 +201,30 @@
     th { color: var(--muted); font-weight: 700; }
     tr:last-child td { border-bottom: none; }
     .badge { color: #cbd5e1; font-weight: 600; }
+
+    .chart-card {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(59, 130, 246, 0.14));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.24);
+      display: grid;
+      gap: 8px;
+    }
+
+    .chart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .chart-title { margin: 0; font-size: 18px; }
+    .chart-subtitle { margin: 0; color: var(--muted); font-size: 14px; }
+    .chart-legend { display: flex; gap: 12px; flex-wrap: wrap; }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+    .legend-dot { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
   </style>
 </head>
 <body>
@@ -263,6 +288,21 @@
     </section>
 
     <section id="captacion" class="tab-section">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div>
+            <h3 class="chart-title">Tasas de cuentas de captación (referencia 2025)</h3>
+            <p class="chart-subtitle">Comparativo de rendimientos por institución. Algunas entidades tradicionales no ofrecen rendimiento directo en cuentas a la vista.</p>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:#ec4899"></span>Promocional / condicionado</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#22c55e"></span>Tasa normal</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#64748b"></span>Sin rendimiento</span>
+          </div>
+        </div>
+        <canvas id="captacionChart" height="120"></canvas>
+      </div>
+
       <div class="table-wrapper">
         <table>
           <thead>
@@ -329,6 +369,73 @@
         document.getElementById(btn.dataset.target).classList.add('active');
       });
     });
+
+    const captacionData = [
+      { name: 'Didi', rate: 16.0, term: 'A la vista', type: 'Promocional / condicionado' },
+      { name: 'Klar', rate: 15.0, term: 'A la vista', type: 'Promocional / condicionado' },
+      { name: 'Nu', rate: 15.0, term: 'A la vista', type: 'Promocional / condicionado' },
+      { name: 'Klar', rate: 11.6, term: 'A la vista', type: 'Normal' },
+      { name: 'finsus', rate: 10.99, term: '6 meses', type: 'Normal' },
+      { name: 'Nu', rate: 10.5, term: '1 año', type: 'Normal' },
+      { name: 'Fondeadora', rate: 10.3, term: '30 días', type: 'Normal' },
+      { name: 'Didi depósitos', rate: 8.5, term: '30 días', type: 'Normal' },
+      { name: 'Klar', rate: 8.5, term: 'A la vista', type: 'Normal' },
+      { name: 'Nu', rate: 7.55, term: '1 año', type: 'Normal' },
+      { name: 'BBVA', rate: 0, term: 'A la vista', type: 'Sin rendimiento' },
+      { name: 'Santander', rate: 0, term: 'A la vista', type: 'Sin rendimiento' },
+      { name: 'Banorte', rate: 0, term: 'A la vista', type: 'Sin rendimiento' }
+    ];
+
+    const palette = {
+      promo: '#ec4899',
+      normal: '#22c55e',
+      zero: '#64748b'
+    };
+
+    const ctx = document.getElementById('captacionChart');
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: captacionData.map(item => `${item.name} · ${item.term}`),
+          datasets: [{
+            label: 'Tasa ofrecida (%)',
+            data: captacionData.map(item => item.rate),
+            backgroundColor: captacionData.map(item => {
+              if (item.type === 'Promocional / condicionado') return palette.promo;
+              if (item.type === 'Normal') return palette.normal;
+              return palette.zero;
+            }),
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.formattedValue}% — ${captacionData[ctx.dataIndex].type}`
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#cbd5e1' },
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              title: { display: true, text: 'Porcentaje anual', color: '#cbd5e1' }
+            },
+            x: {
+              ticks: { color: '#cbd5e1', maxRotation: 45, minRotation: 30 },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
