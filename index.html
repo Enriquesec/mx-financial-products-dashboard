@@ -82,6 +82,37 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.35);
     }
 
+    .header-right {
+      display: grid;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+
+    .brand-mark img {
+      width: 120px;
+      height: auto;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.38));
+    }
+
+    .brand-mark .brand-caption {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+    }
+
     .summary-row {
       display: flex;
       justify-content: space-between;
@@ -210,6 +241,7 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.24);
       display: grid;
       gap: 8px;
+      position: relative;
     }
 
     .chart-header {
@@ -225,6 +257,25 @@
     .chart-legend { display: flex; gap: 12px; flex-wrap: wrap; }
     .legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
     .legend-dot { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
+
+    .chart-area {
+      min-height: 320px;
+      max-height: 380px;
+    }
+
+    #captacionChart {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .footer {
+      max-width: 1200px;
+      margin: 32px auto 48px;
+      padding: 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -235,11 +286,17 @@
       <p class="lede">Explora un vistazo rápido a más de treinta instituciones y sus principales productos de captación y crédito en un panel sencillo de tres pestañas.</p>
       <p class="lede">Las fichas resumen tipo de entidad, enfoque principal y beneficios clave para una comparación ágil.</p>
     </div>
-    <div class="summary">
-      <div class="summary-row"><span>Instituciones</span><strong>32</strong></div>
-      <div class="summary-row"><span>Vistas</span><strong>Inicio · Cuentas de captación · Tarjetas de crédito</strong></div>
-      <div class="summary-row"><span>Estado</span><strong>Información de referencia</strong></div>
-      <div class="summary-row"><span>Última edición</span><strong>Actualizado al momento</strong></div>
+    <div class="header-right">
+      <div class="summary">
+        <div class="summary-row"><span>Instituciones</span><strong>32</strong></div>
+        <div class="summary-row"><span>Vistas</span><strong>Inicio · Cuentas de captación · Tarjetas de crédito</strong></div>
+        <div class="summary-row"><span>Estado</span><strong>Información de referencia</strong></div>
+        <div class="summary-row"><span>Última edición</span><strong>Actualizado al momento</strong></div>
+      </div>
+      <div class="brand-mark" aria-label="Marca personal Morro de las finanzas">
+        <img src="assets/morro-logo.svg" alt="Morro de las finanzas" loading="lazy">
+        <p class="brand-caption">Morro de las finanzas · Marca personal</p>
+      </div>
     </div>
   </header>
 
@@ -300,7 +357,9 @@
             <span class="legend-item"><span class="legend-dot" style="background:#64748b"></span>Sin rendimiento</span>
           </div>
         </div>
-        <canvas id="captacionChart" height="120"></canvas>
+        <div class="chart-area">
+          <canvas id="captacionChart"></canvas>
+        </div>
       </div>
 
       <div class="table-wrapper">
@@ -356,6 +415,10 @@
       </div>
     </section>
   </main>
+
+  <footer class="footer">
+    <p>Contacto: Morro de las finanzas en Instagram y Facebook.</p>
+  </footer>
 
   <script>
     const buttons = document.querySelectorAll('.tab-btn');
