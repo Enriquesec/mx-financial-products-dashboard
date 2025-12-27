@@ -1,0 +1,33 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#4c1d95" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="banner" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="220" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="200" fill="#fff" fill-opacity="0.08"/>
+  <circle cx="256" cy="242" r="120" fill="#0f172a" fill-opacity="0.85" stroke="#a855f7" stroke-width="4"/>
+  <g filter="url(#shadow)">
+    <path d="M214 222c0-32 18-58 42-58s42 26 42 58" stroke="#e9d5ff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M206 247c0-42 23-77 50-77s50 35 50 77c0 47-25 83-50 83s-50-36-50-83z" fill="#1f2937" stroke="#a855f7" stroke-width="6"/>
+    <path d="M222 247c0-28 16-51 34-51s34 23 34 51c0 32-17 56-34 56s-34-24-34-56z" fill="#0f172a" stroke="#d8b4fe" stroke-width="4"/>
+    <path d="M218 209c10-10 23-18 38-18 14 0 27 6 36 15" stroke="#d8b4fe" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="236" cy="244" r="8" fill="#fcd34d"/>
+    <circle cx="276" cy="244" r="8" fill="#fcd34d"/>
+    <path d="M240 276c10 8 22 8 32 0" stroke="#f472b6" stroke-width="6" stroke-linecap="round"/>
+    <path d="M234 219c0-18 12-33 26-33s26 15 26 33" stroke="#fcd34d" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <rect x="106" y="328" width="300" height="72" rx="18" fill="url(#banner)" stroke="#b45309" stroke-width="6"/>
+  <text x="256" y="372" text-anchor="middle" fill="#1f2937" font-family="'Inter', 'Segoe UI', sans-serif" font-size="34" font-weight="800">MORRO</text>
+  <text x="256" y="404" text-anchor="middle" fill="#1f2937" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24" font-weight="700">DE LAS FINANZAS</text>
+  <defs>
+    <filter id="shadow" x="150" y="140" width="212" height="224" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+</svg>
